@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>รายงานผลการปฏิบัติงาน สายงานบริหารสถานศึกษา</title>
+<style>
+  :root{
+    --navy: #0e3a63;
+    --navy-deep: #082645;
+    --blue: #1a5f9e;
+    --blue-soft: #4f8fc9;
+    --sky: #eaf3fb;
+    --sky-2: #d7e9f8;
+    --gold: #b98a2f;
+    --ink: #1c2b3a;
+    --ink-soft: #52657a;
+    --line: #c9dcee;
+    --white: #ffffff;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'MS Sans Serif','Microsoft Sans Serif',Arial,sans-serif;
+    font-weight:700;
+    color:var(--ink);
+    background: radial-gradient(circle at center, #66FFFF 0%, #ffffff 100%);
+    background-attachment: fixed;
+    line-height:1.85;
+    font-size:18px;
+  }
+  *{font-weight:700 !important; color:#000 !important; font-size:16pt !important; font-family:'MS Sans Serif','Microsoft Sans Serif',Arial,sans-serif !important;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 80px;}
+
+  /* ---------- top nav ---------- */
+  nav.topnav{
+    position:sticky;top:0;z-index:50;
+    background:#000000;
+    border-bottom:1px solid var(--line);
+  }
+  nav.topnav, nav.topnav *{color:#ffffff !important;}
+  nav.topnav .inner{
+    max-width:920px;margin:0 auto;padding:12px 24px;
+    display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;
+    font-size:14.5px;
+  }
+  nav.topnav .brand{font-weight:700;color:var(--navy-deep);margin-right:auto;letter-spacing:.2px;}
+  nav.topnav a{color:var(--blue);text-decoration:none;padding:4px 2px;border-bottom:2px solid transparent;}
+  nav.topnav a:hover{border-bottom-color:var(--blue-soft);}
+
+  /* ---------- cover ---------- */
+  .cover{
+    text-align:center;
+    padding:64px 20px 48px;
+  }
+  .cover .logo-line{width:100%;display:flex;justify-content:center;margin-bottom:22px;}
+  .cover .logo{width:96px;height:auto;background:transparent;}
+  .cover .kicker{
+    display:inline-block;font-size:14px;color:var(--blue);
+    background:#ffffff;border:1px solid var(--line);
+    padding:6px 16px;border-radius:999px;margin-bottom:22px;letter-spacing:.3px;
+  }
+  .cover h1{
+    font-size:26px;line-height:1.6;color:var(--navy-deep);margin:0 0 8px;
+    font-weight:700;
+  }
+  .cover .subtitle{font-size:17px;color:var(--ink-soft);margin:0 0 30px;line-height:1.9;}
+  .cover .divider{
+    width:64px;height:3px;margin:0 auto 30px;
+    background:linear-gradient(90deg,var(--blue),var(--gold));
+    border-radius:3px;
+  }
+  .cover .author-card{
+    display:inline-block;text-align:center;background:var(--white);
+    border:1px solid var(--line);border-radius:14px;
+    padding:26px 36px;box-shadow:0 12px 30px -18px rgba(14,58,99,.35);
+    margin-bottom:34px;
+  }
+  .cover .author-card .label{font-size:13px;color:var(--ink-soft);margin-bottom:4px;}
+  .cover .author-card .name{font-size:19px;font-weight:700;color:var(--navy-deep);margin-bottom:2px;}
+  .cover .author-card .role{font-size:15px;color:var(--ink-soft);}
+  .cover .org{font-size:15px;color:var(--ink-soft);line-height:1.9;}
+  .cover .org strong{color:var(--navy);}
+
+  /* ---------- section styling ---------- */
+  section{margin-top:56px;}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;margin-bottom:22px;
+    padding-bottom:12px;border-bottom:2px solid var(--sky-2);
+  }
+  .section-head .tag{
+    flex:none;font-size:13px;font-weight:700;color:var(--navy);
+    background:#ffffff;border:1px solid var(--navy);
+    padding:6px 14px;border-radius:8px;letter-spacing:.3px;
+  }
+  .section-head h2{font-size:21px;color:var(--navy-deep);margin:0;font-weight:700;}
+
+  .highlight-section{
+    background:transparent;
+    border-radius:16px;
+    padding:32px 24px;
+  }
+  .single-head{
+    text-align:center;
+    font-size:24px;
+    color:var(--navy-deep);
+    margin:0 0 22px;
+    font-weight:700;
+  }
+
+  .card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:26px 28px;
+    margin-bottom:20px;
+    box-shadow:0 10px 26px -20px rgba(14,58,99,.4);
+  }
+  .card p{margin:0 0 12px;color:var(--ink);}
+  .card p:last-child{margin-bottom:0;}
+  .card + .signature{margin-top:28px;}
+
+  h3.sub{font-size:16.5px;color:var(--navy);margin:0 0 10px;font-weight:700;}
+  .item-block{margin-bottom:26px;}
+  .item-block:last-child{margin-bottom:0;}
+  .item-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:26px;height:26px;border-radius:50%;
+    background:var(--sky-2);color:var(--navy);font-size:13px;font-weight:700;
+    margin-right:8px;
+  }
+
+  .info-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+  .info-row{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:15.5px;}
+  .info-row .k{color:var(--ink-soft);min-width:150px;}
+  .info-row .v{color:var(--ink);font-weight:600;}
+
+  table.data{
+    width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:14.5px;
+    background:var(--white);
+  }
+  table.data caption{caption-side:top;text-align:left;font-size:14px;color:var(--ink-soft);margin-bottom:8px;}
+  table.data th{
+    background:#ffffff;
+    color:var(--navy-deep);
+    font-weight:700;text-align:left;
+    padding:10px 12px;border:1px solid var(--navy);
+  }
+  table.data td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;color:var(--ink);}
+  table.data tr:nth-child(even) td{background:#ffffff;}
+
+  .level-scale{list-style:none;margin:0;padding:0;display:grid;gap:8px;}
+  .level-scale li{
+    display:flex;gap:12px;align-items:flex-start;font-size:14.5px;
+    padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:#ffffff;
+  }
+  .level-scale .lv{
+    flex:none;font-weight:700;color:var(--navy);background:#ffffff;border:1px solid var(--navy);
+    width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;
+  }
+  .level-scale li.active{
+    background:#ffffff;border-color:var(--navy);border-width:2px;
+  }
+  .level-scale li.active .lv{background:#ffffff;border-color:var(--navy);}
+  .overall{
+    display:inline-flex;align-items:center;gap:10px;margin:6px 0 18px;
+    background:#ffffff;border:1px solid var(--navy);
+    color:var(--navy);padding:10px 20px;border-radius:12px;font-size:15px;
+  }
+  .overall b{font-size:22px;}
+
+  .conduct-item{margin-bottom:34px;}
+  .conduct-item:last-child{margin-bottom:0;}
+  .conduct-item h3{
+    font-size:16px;color:var(--navy-deep);margin:0 0 10px;font-weight:700;
+    display:flex;gap:10px;
+  }
+  .conduct-item p{margin:0 0 14px;}
+  .photo-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px;
+  }
+  .photo-row figure{margin:0;}
+  .photo-row img{
+    width:100%;height:247px;object-fit:contain;object-position:center;border-radius:10px;
+    border:1px solid var(--line);background:#ffffff;
+    box-shadow:0 8px 20px -14px rgba(14,58,99,.5);
+  }
+  .photo-row figcaption{font-size:12.5px;color:var(--ink-soft);text-align:center;margin-top:6px;}
+
+  .toc{list-style:none;margin:0;padding:0;display:grid;gap:4px;}
+  .toc li a{
+    display:flex;justify-content:space-between;gap:14px;
+    text-decoration:none;color:var(--ink);
+    padding:10px 4px;border-bottom:1px dashed var(--line);
+    font-size:15px;
+  }
+  .toc li a:hover{color:var(--blue);}
+  .toc li a .p{color:var(--ink-soft);font-weight:600;}
+  .toc .indent{padding-left:26px;font-size:14px;color:var(--ink-soft);}
+
+  .signature{text-align:center;padding:30px 10px 10px;}
+  .signature .line{color:var(--ink-soft);margin-bottom:6px;}
+  .signature .name{font-weight:700;color:var(--navy-deep);font-size:16px;margin-bottom:4px;}
+
+  .gallery{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+  }
+  .gallery figure{margin:0;background:var(--white);border:1px solid var(--line);
+    border-radius:12px;overflow:hidden;box-shadow:0 8px 20px -16px rgba(14,58,99,.45);}
+  .gallery img{width:100%;height:230px;object-fit:cover;display:block;}
+  .gallery figcaption{padding:8px 10px;font-size:12.5px;color:var(--ink-soft);text-align:center;}
+
+  footer{
+    text-align:center;font-size:13px;
+    margin-top:70px;padding-top:20px;border-top:1px solid var(--line);
+  }
+  footer, footer *{color:#3300FF !important;}
+
+  @media (max-width:640px){
+    .photo-row{grid-template-columns:1fr;}
+    .gallery{grid-template-columns:1fr;}
+    .cover h1{font-size:21px;}
+    .info-row .k{min-width:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="inner">
+    <span class="brand">รายงานผลการปฏิบัติงาน PA</span>
+    <a href="#foreword">คำนำ</a>
+    <a href="#part1">ส่วนที่ 1</a>
+    <a href="#part2">ส่วนที่ 2</a>
+    <a href="#part2b">การมีส่วนร่วม</a>
+    <a href="#part3">ส่วนที่ 3</a>
+    <a href="#appendix">ภาคผนวก</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="logo-line"><img class="logo" src="media/image1.png" alt="ตราสัญลักษณ์"></div>
+    <h1>รายงานผลการปฏิบัติงานของข้าราชการครูและบุคลากรทางการศึกษา<br>
+      สายงานบริหารสถานศึกษา</h1>
+    <p class="subtitle">เพื่อประกอบการประเมินประสิทธิภาพและประสิทธิผลการปฏิบัติงาน<br>
+      และประกอบการพิจารณาเลื่อนเงินเดือน</p>
+    <div class="kicker">รายงานผลการปฏิบัติงาน ครั้งที่ 2 (1 เมษายน 2569 – 30 กันยายน 2569)</div>
+    <div class="divider"></div>
+    <div class="author-card">
+      <div class="label">จัดทำโดย</div>
+      <div class="name">นายนิรุตติ์ วงคำชัย</div>
+      <div class="role">ตำแหน่ง รองผู้อำนวยการโรงเรียนสระแก้ว</div>
+    </div>
+    <p class="org">
+      <strong>โรงเรียนสระแก้ว</strong><br>
+      สำนักงานเขตพื้นที่การศึกษามัธยมศึกษาสระแก้ว<br>
+      สำนักงานคณะกรรมการการศึกษาขั้นพื้นฐาน กระทรวงศึกษาธิการ
+    </p>
+  </div>
+
+  <!-- FOREWORD -->
+  <section id="foreword" class="highlight-section">
+    <h2 class="single-head">คำนำ</h2>
+    <div class="card">
+      <p>รายงานผลการปฏิบัติงานของข้าราชการครูและบุคลากรทางการศึกษา สายงานการสอน ฉบับนี้ จัดทำขึ้นเพื่อประกอบการพิจาณาประเมินประสิทธิภาพและประสิทธิผลการปฏิบัติงาน เพื่อการเลื่อนเงินเดือนข้าราชการครูและบุคลากรทางการศึกษา สายงานผู้บริหารสถานศึกษา ตามหลักเกณฑ์และวิธีการประเมินผลการปฏิบัติงานของข้าราชการครูและบุคลากรทางการศึกษา ที่ ก.ค.ศ. กำหนด (ว23/2564) ซึ่งผู้ขอรับการประเมินได้เรียบเรียงและรวบรวมข้อมูลนำเสนอผลการปฏิบัติงานตามหน้าที่และความรับผิดชอบและผลงานตามลักษณะงานที่ปฏิบัติตามมาตรฐานตำแหน่งและมาตรฐานวิทยฐานะ รวมทั้งงานหน้าที่อื่นที่ได้รับมอบหมายในด้านปริมาณงานและคุณภาพของงาน รวมทั้งผลงานที่ปรากฏต่อการจัดการศึกษา</p>
+      <p>ขอขอบคุณ คณะกรรมการสถานศึกษาขั้นพื้นฐานโรงเรียนสระแก้ว คณะครูและนักเรียน ที่ได้ร่วมกันรับผิดชอบในงานหน้าที่ของตนและได้ร่วมคิด ร่วมปรึกษาหารือ ร่วมตัดสินใจ ร่วมดำเนินการและร่วมประเมินผล เพื่อพัฒนางานอย่างต่อเนื่อง ทำให้การดำเนินงานในโรงเรียนประสบผลสำเร็จตามเป้าหมายและขอขอบคุณผู้เกี่ยวข้องทุกคนที่ทำให้เอกสารฉบับนี้สำเร็จเรียบร้อยด้วยดี</p>
+    </div>
+    <div class="signature">
+      <div class="name">นายนิรุตติ์ วงคำชัย</div>
+      <div class="line">ตำแหน่ง รองผู้อำนวยการโรงเรียนสระแก้ว</div>
+      <div class="line">11 กันยายน 2569</div>
+    </div>
+  </section>
+
+  <!-- TOC -->
+  <section id="toc" class="highlight-section">
+    <h2 class="single-head">สารบัญ</h2>
+    <div class="card">
+      <ul class="toc">
+        <li><a href="#foreword">คำนำ <span class="p">ก</span></a></li>
+        <li><a href="#toc">สารบัญ <span class="p">ข</span></a></li>
+        <li><a href="#part1">ส่วนที่ 1 ข้อมูลของผู้รับการประเมิน <span class="p">1</span></a></li>
+        <li><a href="#part2">ส่วนที่ 2 ข้อมูลการปฏิบัติหน้าที่ <span class="p">2</span></a></li>
+        <li class="indent"><a href="#d1">1. ด้านการบริหารวิชาการและความเป็นผู้นำทางวิชาการ <span class="p">2</span></a></li>
+        <li class="indent"><a href="#d2">2. ด้านการบริหารจัดการสถานศึกษา <span class="p">2</span></a></li>
+        <li class="indent"><a href="#d3">3. ด้านการบริหารการเปลี่ยนแปลงกลยุทธ์และนวัตกรรม <span class="p">2</span></a></li>
+        <li class="indent"><a href="#d4">4. ด้านการบริหารงานชุมชนและเครือข่าย <span class="p">3</span></a></li>
+        <li class="indent"><a href="#d5">5. ด้านการพัฒนาตนเองและวิชาชีพ <span class="p">3</span></a></li>
+        <li><a href="#part2b">ส่วนที่ 3 การประเมินการมีส่วนร่วมในการพัฒนาการศึกษา <span class="p">5</span></a></li>
+        <li><a href="#part3">ส่วนที่ 3 การปฏิบัติตนในการรักษาวินัย คุณธรรม จริยธรรม และจรรยาบรรณวิชาชีพ <span class="p">6</span></a></li>
+        <li><a href="#appendix">ภาคผนวก</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PART 1 -->
+  <section id="part1">
+    <div class="section-head"><span class="tag">ส่วนที่ 1</span><h2>ข้อมูลของผู้รับการประเมิน</h2></div>
+    <div class="card">
+      <div class="info-grid">
+        <div class="info-row"><span class="k">ชื่อ – สกุล</span><span class="v">นายนิรุตติ์ วงคำชัย</span></div>
+        <div class="info-row"><span class="k">ตำแหน่ง</span><span class="v">รองผู้อำนวยการสถานศึกษา วิทยฐานะรองผู้อำนวยการชำนาญการพิเศษ</span></div>
+        <div class="info-row"><span class="k">เงินเดือน</span><span class="v">53,600 บาท</span></div>
+        <div class="info-row"><span class="k">สถานศึกษา</span><span class="v">โรงเรียนสระแก้ว</span></div>
+        <div class="info-row"><span class="k">สังกัด</span><span class="v">สำนักงานเขตพื้นที่การศึกษามัธยมศึกษาสระแก้ว</span></div>
+        <div class="info-row"><span class="k">จำนวนวันลาในรอบการประเมิน</span><span class="v">– วัน</span></div>
+        <div class="info-row"><span class="k">1) ลาป่วย</span><span class="v">– ครั้ง รวม – วัน</span></div>
+        <div class="info-row"><span class="k">2) ลากิจ</span><span class="v">– ครั้ง – วัน</span></div>
+        <div class="info-row"><span class="k">3) ลาอื่น ๆ</span><span class="v">– ครั้ง – วัน</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PART 2 -->
+  <section id="part2">
+    <div class="section-head"><span class="tag">ส่วนที่ 2</span><h2>ข้อมูลการปฏิบัติหน้าที่</h2></div>
+
+    <div class="card" id="d1">
+      <h3 class="sub"><span class="item-num">1</span>ด้านการบริหารวิชาการและความเป็นผู้นำทางวิชาการ</h3>
+
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">1.1 การวางแผนพัฒนามาตรฐานการเรียนรู้ของผู้เรียน</h3>
+        <p>มีแผนพัฒนาคุณภาพการศึกษา ที่สามารถพัฒนาผู้เรียน ให้เป็นคนดีมีความรู้ตามที่หลักสูตรสถานศึกษากำหนด และดำเนินชีวิตตามหลักโรงเรียนสุจริตได้อย่างเหมาะสม ครูสามารถจัดกิจกรรมการเรียนรู้ที่เน้นผู้เรียนเป็นสำคัญ การนำสื่อ นวัตกรรมและเทคโนโลยีทางการศึกษา มาใช้ในการจัดการเรียนรู้</p>
+      </div>
+
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">1.2 การจัดทำและพัฒนาหลักสูตรสถานศึกษา</h3>
+        <p>มีหลักสูตรที่ขับเคลื่อนต้านการทุจริตโดยผู้เรียนเกิดคุณลักษณะ ๕ ประการ</p>
+      </div>
+
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">1.3 การพัฒนากระบวนการจัดการเรียนรู้ที่เน้นผู้เรียนเป็นสำคัญและปฏิบัติการสอน</h3>
+        <p>ครู จัดการเรียนรู้ที่เน้นผู้เรียนเป็นสำคัญมีการวิเคราะห์ผู้เรียน การออกแบบกิจกรรมการเรียนรู้ เครื่องมือวัดผลประเมินผล จัดกระบวนการเรียนรู้ตามแผนพัฒนาคุณภาพการศึกษา ปฏิบัติการสอนในรายวิชากลุ่มเทคโนโลยี จำนวน 10 ชั่วโมง</p>
+      </div>
+
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">1.4 การส่งเสริมสนับสนุนการพัฒนาหรือการนำสื่อนวัตกรรมและเทคโนโลยีทางการศึกษามาใช้ในการจัดการเรียนรู้</h3>
+        <p>มีการอบรมครู เพื่อพัฒนาสื่อ นวัตกรรม และเทคโนโลยีทางการศึกษามาใช้ในการจัดการเรียนรู้ เช่น การอบรม google site / google classroom / การสร้างสื่อด้วย Canva / google AI Essential การสร้างระบบจองห้องประชุมของโรงเรียน</p>
+      </div>
+
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">1.5 การนิเทศ กำกับติดตาม ประเมินผลการจัดการเรียนรู้ของครูในสถานศึกษาและมีการประกันคุณภาพการศึกษาภายในสถานศึกษา</h3>
+        <p>นิเทศ กำกับติดตาม และประเมินผลการจัดการเรียนรู้ของครู ร้อยละ 90 โดยมีการริเริ่ม พัฒนา ส่งเสริมกระบวนการแลกเปลี่ยนเรียนรู้ทางวิชาชีพโดยกระบวนการ PLC และการประชุมระดับชั้น และมีการประกันคุณภาพการศึกษาภายในสถานศึกษาอย่างเป็นระบบและต่อเนื่อง</p>
+      </div>
+
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">1.6 การศึกษา วิเคราะห์เพื่อแก้ปัญหาและพัฒนาการจัดการเรียนรู้เพื่อยกระดับคุณภาพการศึกษาของสถานศึกษา</h3>
+        <p>ได้ศึกษา วิเคราะห์ เพื่อแก้ปัญหาและพัฒนาผลสัมฤทธิ์ทางการเรียนของนักเรียนให้สูงขึ้น เพื่อยกระดับคุณภาพการศึกษาของสถานศึกษา โดยได้พัฒนานวัตกรรมในการบริหารงาน เรื่อง <strong>“รูปแบบการบริหารงานวิชาการ 5 ต. เพื่อยกระดับผลสัมฤทธิ์ทางการเรียน”</strong> (ตระหนัก/ตรวจสอบ/ติวเข้ม/เติมเต็ม/ติดตาม)</p>
+        <p><strong>โดยมีวัตถุประสงค์เพื่อ</strong><br>
+        1. เพื่อเป็นคู่มือ แนวทางในการดำเนินงานวิชาการอย่างเป็นระบบตามวงจรคุณภาพ<br>
+        2. เพื่อพัฒนาผลสัมฤทธิ์ทางการเรียน ให้สูงขึ้น</p>
+        <p><strong>เป้าหมาย</strong><br>
+        1. เพื่อพัฒนาระบบงานวิชาการโรงเรียนสระแก้ว<br>
+        2. เพื่อยกระดับผลสัมฤทธิ์ทางการเรียนทุกระดับชั้น</p>
+      </div>
+    </div>
+
+    <div class="card" id="d2">
+      <h3 class="sub"><span class="item-num">2</span>ด้านการบริหารจัดการสถานศึกษา</h3>
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">2.1 การบริหารจัดการสถานศึกษาให้เป็นไปตามกฎหมาย ระเบียบ ข้อบังคับ นโยบาย และตามหลักบริหารกิจการบ้านเมืองที่ดี</h3>
+        <p>มีคู่มือการบริหารจัดการงานที่ได้รับมอบหมาย ๓ ฝ่าย และมีคำสั่งมอบหมายงานบริหารจัดการสถานศึกษาตามหลักบริหารกิจการบ้านเมืองที่ดี</p>
+      </div>
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">2.2 การบริหารกิจการผู้เรียนและการส่งเสริมพัฒนาผู้เรียน</h3>
+        <p>ผู้เรียนได้รับการส่งเสริมและพัฒนาโดยมีสภานักเรียนเป็นแกนนำในการดำเนินการและมีเครือข่ายผู้ปกครองที่ให้การสนับสนุนทางการศึกษา</p>
+      </div>
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">2.3 การจัดระบบดูแลช่วยเหลือนักเรียน</h3>
+        <p>ผู้เรียนได้รับการช่วยเหลือตามระบบดูแลช่วยเหลือนักเรียน ๕ ขั้นตอน</p>
+      </div>
+    </div>
+
+    <div class="card" id="d3">
+      <h3 class="sub"><span class="item-num">3</span>ด้านการบริหารการเปลี่ยนแปลงกลยุทธ์และนวัตกรรม</h3>
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">3.1 การกำหนดนโยบาย กลยุทธ์ การใช้เครื่องมือ หรือนวัตกรรมทางการบริหาร</h3>
+        <p>มีแผนพัฒนาคุณภาพการศึกษา ที่สามารถพัฒนาผู้เรียน ให้เป็นคนดีมีความรู้ตามหลักสูตร สามารถนำหลักปรัชญาของเศรษฐกิจพอเพียงไปใช้ในชีวิตประจำวันได้</p>
+      </div>
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">3.2 การบริหารการเปลี่ยนแปลงและนวัตกรรมในสถานศึกษาเพื่อพัฒนาสถานศึกษา</h3>
+        <p>มีนวัตกรรมการพัฒนาการจัดการเรียนรู้ และเผยแพร่ให้แก่สถานศึกษาใกล้เคียง</p>
+      </div>
+    </div>
+
+    <div class="card" id="d4">
+      <h3 class="sub"><span class="item-num">4</span>ด้านการบริหารงานชุมชนและเครือข่าย</h3>
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">4.1 การสร้างและพัฒนาเครือข่ายเพื่อพัฒนาการเรียนรู้</h3>
+        <p>โรงเรียนสระแก้ว มีเครือข่ายผู้ร่วมพัฒนาโรงเรียน</p>
+      </div>
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">4.2 การจัดระบบการให้บริการในสถานศึกษาโรงเรียนสระแก้ว</h3>
+        <p>ได้รับการสนับสนุนด้านงบประมาณจากเครือข่ายผู้ร่วมพัฒนาโรงเรียน</p>
+      </div>
+    </div>
+
+    <div class="card" id="d5">
+      <h3 class="sub"><span class="item-num">5</span>ด้านการพัฒนาตนเองและวิชาชีพ</h3>
+
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">5.1 การพัฒนาตนเองและวิชาชีพ</h3>
+        <table class="data">
+          <thead><tr><th>ที่</th><th>วัน/เดือน/ปี</th><th>เรื่อง</th><th>สถานที่</th><th>หน่วยงานที่จัด</th><th>หลักฐาน</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>13 ม.ค. 69</td><td>ได้รับรางวัล “ครูดีศรีสระแก้ว” ประจำปีการศึกษา 2569</td><td>สพป.สระแก้ว เขต 2</td><td>สพป.สระแก้ว เขต 2</td><td>เกียรติบัตร</td></tr>
+            <tr><td>2</td><td>13 ม.ค. 69</td><td>ได้รับรางวัล “ครูดีศรีสระแก้ว” ประจำปีการศึกษา 2569</td><td>สพม.สระแก้ว</td><td>สพม.สระแก้ว</td><td>เกียรติบัตร</td></tr>
+            <tr><td>3</td><td>15 ส.ค. 69</td><td>ได้รับรางวัล “คุรุชน คนคุณธรรม” ประจำปีการศึกษา 2569</td><td>สพม.สระแก้ว</td><td>สพม.สระแก้ว</td><td>คำสั่ง</td></tr>
+            <tr><td>4</td><td>6 ก.ค. 69</td><td>ได้รับรางวัล “รองผู้อำนวยการโรงเรียนมัธยมศึกษาผู้ปฏิบัติหน้าที่ดีเด่น”</td><td>ส.ร.ม.ท.</td><td>ส.ร.ม.ท.</td><td>โล่และเกียรติบัตร</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="item-block">
+        <h3 class="sub" style="font-size:15px;">5.2 การนำความรู้ ทักษะที่ได้จากการพัฒนาตนเองและวิชาชีพมาใช้ในการพัฒนาการบริหารจัดการสถานศึกษาที่ส่งผลต่อคุณภาพผู้เรียน ครู และสถานศึกษา</h3>
+
+        <table class="data">
+          <caption>1) รางวัล ผลงาน ด้านการพัฒนาตนเอง</caption>
+          <thead><tr><th>ที่</th><th>วัน/เดือน/ปี</th><th>รางวัล/เกียรติคุณ</th><th>หน่วยงานที่มอบ</th><th>หลักฐาน</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>5–7 ส.ค. 69</td><td>ครูผู้ฝึกสอนนักเรียน ได้รับรางวัลระดับเหรียญทอง การประกวดการนำเสนอนวัตกรรมและผลผลิตที่เกิดจากการเรียนรู้ในชั้นเรียน ระดับชั้น ม.1 - ม.3</td><td>สพฐ. และกลุ่มโรงเรียนผู้นำ 46 ICT</td><td>เกียรติบัตร</td></tr>
+            <tr><td>2</td><td>5–7 ส.ค. 69</td><td>ครูผู้ฝึกสอนนักเรียน ได้รับรางวัลระดับเหรียญเงิน การแข่งขันหุ่นยนต์อัตโนมัติ ระดับชั้น ม.4 - ม.6</td><td>สพฐ. และกลุ่มโรงเรียนผู้นำ 46 ICT</td><td>เกียรติบัตร</td></tr>
+          </tbody>
+        </table>
+
+        <table class="data">
+          <caption>2) ด้านผู้เรียน</caption>
+          <thead><tr><th>ที่</th><th>วัน/เดือน/ปี</th><th>รางวัล/เกียรติคุณ</th><th>หน่วยงานที่มอบ</th><th>หลักฐาน</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>5–7 ส.ค. 69</td><td>นักเรียน ได้รับรางวัลระดับเหรียญทอง การประกวดการนำเสนอนวัตกรรมและผลผลิตที่เกิดจากการเรียนรู้ในชั้นเรียน ระดับชั้น ม.1 - ม.3</td><td>สพม.สระแก้ว</td><td>เกียรติบัตร</td></tr>
+            <tr><td>2</td><td>5–7 ส.ค. 69</td><td>นักเรียน ได้รับรางวัลระดับเหรียญเงิน การแข่งขันหุ่นยนต์อัตโนมัติ ระดับชั้น ม.4 - ม.6</td><td>สพม.สระแก้ว</td><td>เกียรติบัตร</td></tr>
+          </tbody>
+        </table>
+
+        <table class="data">
+          <caption>3) ด้านครูและบุคลากรทางการศึกษา</caption>
+          <thead><tr><th>ที่</th><th>วัน/เดือน/ปี</th><th>รางวัล/เกียรติคุณ</th><th>หน่วยงานที่มอบ</th><th>หลักฐาน</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>5–7 ส.ค. 69</td><td>ครูผู้ฝึกสอนนักเรียนได้รับรางวัลชนะเลิศ การแข่งขันโครงงานสะเต็มศึกษาและกล่องสมองกล (STEM &amp; microcontroller Project) นำเสนอภาษาไทย ม.1-3</td><td>สพฐ. และกลุ่มโรงเรียนผู้นำ 46 ICT</td><td>เกียรติบัตร</td></tr>
+            <tr><td>2</td><td>5–7 ส.ค. 69</td><td>ครูผู้ฝึกสอนนักเรียนได้รับรางวัลชนะเลิศ การแข่งขันโครงงานสะเต็มศึกษาและกล่องสมองกล (STEM &amp; microcontroller Project) นำเสนอภาษาอังกฤษ ม.1-3</td><td>สพฐ. และกลุ่มโรงเรียนผู้นำ 46 ICT</td><td>เกียรติบัตร</td></tr>
+          </tbody>
+        </table>
+
+        <table class="data">
+          <caption>4) ด้านสถานศึกษา</caption>
+          <thead><tr><th>ที่</th><th>วัน/เดือน/ปี</th><th>รางวัล/เกียรติคุณ</th><th>หน่วยงานที่มอบ</th><th>หลักฐาน</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>27 ก.ค. 69</td><td>หนึ่งโรงเรียน หนึ่งนวัตกรรม</td><td>สำนักงานเลขาธิการคุรุสภา</td><td>เกียรติบัตร</td></tr>
+            <tr><td>2</td><td>27 ส.ค. 69</td><td>ผลงานขับเคลื่อนตรงตามข้อคิดเห็นสภานักเรียนระดับประเทศ</td><td>สพฐ.</td><td>เกียรติบัตร</td></tr>
+          </tbody>
+        </table>
+
+        <table class="data">
+          <caption>5) การได้รับเชิญเป็นวิทยากร/กรรมการตัดสินภายในและภายนอกสถานศึกษา</caption>
+          <thead><tr><th>ที่</th><th>วัน/เดือน/ปี</th><th>รายการ/เรื่อง</th><th>หน่วยงานที่เชิญ</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>10 ก.ย. 69</td><td>กรรมการประเมิน PA กลุ่มสาระการเรียนรู้วิทยาศาสตร์และเทคโนโลยี โรงเรียนสระแก้ว</td><td>โรงเรียนสระแก้ว</td></tr>
+            <tr><td>2</td><td>11 ก.ย. 69</td><td>กรรมการประเมิน PA กลุ่มสาระการเรียนรู้วิทยาศาสตร์และเทคโนโลยี โรงเรียนร่มเกล้าวัฒนานคร สระแก้ว รัชมังคลาภิเษก</td><td>โรงเรียนร่มเกล้าวัฒนานคร สระแก้ว รัชมังคลาภิเษก</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PART 2B -->
+  <section id="part2b">
+    <div class="section-head"><span class="tag">ส่วนที่ 2</span><h2>การประเมินการมีส่วนร่วมในการพัฒนาการศึกษา</h2></div>
+    <div class="card">
+      <h3 class="sub">ความสำเร็จของงานที่ได้รับมอบหมายจากผู้บังคับบัญชา</h3>
+      <p>ข้าพเจ้าได้รับมอบหมายจากผู้บังคับบัญชาให้ปฏิบัติงาน ดังนี้</p>
+      <p>
+        1. วางแผน ประสานงาน กำกับ ติดตามผล กำกับดูแล ประเมินผลการดำเนินงาน การบริหารจัดการการศึกษา<br>
+        2. พิจารณาร่างกำหนด ระเบียบ แนวปฏิบัติต่างๆ เพื่อการบริหารงานในโรงเรียน<br>
+        3. กำหนดนโยบาย แผนงาน ในการพัฒนาคุณภาพสถานศึกษาให้ได้มาตรฐานตามที่ต้นสังกัดกำหนด<br>
+        4. รับฟังความคิดเห็น ข้อเสนอแนะ จากบุคลากร ชุมชน ผู้ปกครอง เพื่อเป็นข้อมูลประกอบการพิจารณาการดำเนินงานของโรงเรียน<br>
+        5. นิเทศ กำกับ ติดตามการดำเนินงาน การบริหารจัดการศึกษาของโรงเรียนตามโครงสร้างสายงาน การบริหารงาน กลุ่มบริหารทั่วไป<br>
+        6. ปฏิบัติหน้าที่งานอื่นๆ ที่ได้รับมอบหมาย
+      </p>
+      <div class="overall">ผลการปฏิบัติงานโดยภาพรวม อยู่ในระดับ <b>5</b></div>
+
+      <h3 class="sub">ระดับความสำเร็จ</h3>
+      <ul class="level-scale">
+        <li><span class="lv">1</span>ปฏิบัติงานที่ผู้บังคับบัญชามอบหมายแล้วเสร็จ ร้อยละ 19.99 ลงมา</li>
+        <li><span class="lv">2</span>ปฏิบัติงานที่ผู้บังคับบัญชามอบหมายแล้วเสร็จ ร้อยละ 20.00–39.99</li>
+        <li><span class="lv">3</span>ปฏิบัติงานที่ผู้บังคับบัญชามอบหมายแล้วเสร็จ ร้อยละ 40.00–59.99</li>
+        <li><span class="lv">4</span>ปฏิบัติงานที่ผู้บังคับบัญชามอบหมายแล้วเสร็จ ร้อยละ 60.00–79.99</li>
+        <li class="active"><span class="lv">5</span>ปฏิบัติงานที่ผู้บังคับบัญชามอบหมายแล้วเสร็จ ร้อยละ 80.00 ขึ้นไป</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PART 3 -->
+  <section id="part3">
+    <div class="section-head"><span class="tag">ส่วนที่ 3</span><h2>การปฏิบัติตนในการรักษาวินัย คุณธรรม จริยธรรม และจรรยาบรรณวิชาชีพ</h2></div>
+    <div class="card">
+
+      <div class="conduct-item">
+        <h3><span class="item-num">1</span>ยึดมั่นในสถาบันหลักของประเทศ อันได้แก่ ชาติ ศาสนา พระมหากษัตริย์ และการปกครองระบอบประชาธิปไตยอันมีพระมหากษัตริย์ทรงเป็นประมุข</h3>
+        <p>ข้าพเจ้าส่งเสริม สนับสนุนและพิทักษ์รักษาสถาบันหลักของประเทศ อันได้แก่การรักษาผลประโยชน์และชื่อเสียงของประเทศชาติ การปฏิบัติตนตามหลักของศาสนา การเทิดทูนสถาบันพระมหากษัตริย์ รวมทั้งไม่ต่อต้านการปกครองในระบอบประชาธิปไตยอันมีพระมหากษัตริย์ทรงเป็นประมุข</p>
+        <div class="photo-row">
+          <figure><img src="media/image2.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+          <figure><img src="media/image3.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="conduct-item">
+        <h3><span class="item-num">2</span>มีความซื่อสัตย์ สุจริต มีจิตสำนึกที่ดี มีความรับผิดชอบต่อหน้าที่และต่อผู้เกี่ยวข้องในฐานะข้าราชการครูและบุคลากรทางการศึกษา</h3>
+        <p>ข้าพเจ้าปฏิบัติหน้าที่ด้วยความซื่อสัตย์สุจริต ไม่แสวงหาผลประโยชน์โดยมิชอบ ยึดความถูกต้องตามกฎหมายและตามทำนองคลองธรรม มีจิตสำนึกที่ดี ปฏิบัติหน้าที่ด้วยความรอบคอบ ถูกต้อง รวดเร็ว เต็มกำลังความสามารถ และกล้ารับผิดชอบในความผิดพลาดที่เกิดขึ้นจากการปฏิบัติหน้าที่ รวมทั้งพร้อมรับการตรวจสอบ มีความรับผิดชอบต่อหน้าที่และต่อผู้รับบริการ คำนึงถึงหลักสากล ในการปฏิบัติตามหลักสิทธิมนุษยชน การเปิดเผยข้อมูลข่าวสารที่ถูกต้อง และการใช้เทคโนโลยีสื่อ สังคมอย่างเหมาะสม</p>
+        <div class="photo-row">
+          <figure><img src="media/image4.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+          <figure><img src="media/image5.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="conduct-item">
+        <h3><span class="item-num">3</span>มีความกล้าคิด กล้าตัดสินใจ กล้าแสดงออก และกระทำในสิ่งที่ถูกต้องชอบธรรม</h3>
+        <p>ข้าพเจ้ามีความกล้าคิด กล้าตัดสินใจปฏิบัติหน้าที่ด้วยความถูกต้องชอบธรรม และกล้าแสดงความคิดเห็นหรือคัดค้านในสิ่งที่ไม่ถูกต้อง รวมทั้งไม่ยอมทำในสิ่งที่ไม่เหมาะสมเพื่อรักษาประโยชน์ส่วนรวม</p>
+        <div class="photo-row">
+          <figure><img src="media/image6.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+          <figure><img src="media/image7.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="conduct-item">
+        <h3><span class="item-num">4</span>มีจิตอาสา จิตสาธารณะ มุ่งประโยชน์ส่วนรวม โดยคำนึงถึงประโยชน์ส่วนตนหรือพวกพ้อง</h3>
+        <p>ข้าพเจ้าปฏิบัติหน้าที่โดยคำนึงถึงประโยชน์ส่วนรวมเป็นหลัก มีจิตอาสา จิตสาธารณะ มีความเสียสละ ปฏิบัติหน้าที่เต็มกำลัง เต็มความสามารถ อุทิศตนเพื่อประโยชน์ส่วนรวม เช่น ร่วมระดมทุนผ้าป่าเพื่อการศึกษา, บริจาคสนับสนุนทุนการศึกษาให้กับนักเรียน, การเข้าร่วมกิจกรรมชุมชน, การให้คำปรึกษาและบริการความรู้, การให้ความช่วยเหลือนักเรียนด้านต่าง ๆ เช่น การเกิดอุทกภัย อัคคีภัย เป็นต้น</p>
+        <div class="photo-row">
+          <figure><img src="media/image8.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+          <figure><img src="media/image9.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="conduct-item">
+        <h3><span class="item-num">5</span>มุ่งผลสัมฤทธิ์ของงาน มุ่งมั่นในการปฏิบัติงานอย่างเต็มกำลังความสามารถโดยคำนึงถึงคุณภาพการศึกษาเป็นสำคัญ</h3>
+        <p>ข้าพเจ้าปฏิบัติหน้าที่ด้วยความมุ่งมั่น มีความรับผิดชอบ ปฏิบัติหน้าที่อย่างเต็มกำลังและความสามารถ โดยคำนึงถึงเป้าหมาย ผลสัมฤทธิ์ของงาน มุ่งประโยชน์ส่วนรวม เพื่อให้งานบรรลุผลสำเร็จตามเป้าหมาย ให้เกิดประสิทธิภาพและประสิทธิผลในการปฏิบัติงานในทุก ๆ ด้าน ส่งผลให้ครู นักเรียน โรงเรียนได้รับรางวัล เช่น รางวัลชนะเลิศ อันดับ 1 การแข่งขันหุ่นยนต์พื้นฐาน ระดับชาติ รางวัลชนะเลิศ อันดับ 1 การแข่งขันสิ่งประดิษฐ์ทางวิทยาศาสตร์ ระดับชาติ เป็นต้น</p>
+        <div class="photo-row">
+          <figure><img src="media/image10.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+          <figure><img src="media/image11.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="conduct-item">
+        <h3><span class="item-num">6</span>ปฏิบัติหน้าที่อย่างเป็นธรรมและไม่เลือกปฏิบัติ</h3>
+        <p>ข้าพเจ้าปฏิบัติหน้าที่ด้วยความเที่ยงธรรม ปราศจากอคติและให้บริการผู้เรียนและผู้รับบริการโดยไม่เลือกปฏิบัติ</p>
+        <div class="photo-row">
+          <figure><img src="media/image12.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+          <figure><img src="media/image13.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="conduct-item">
+        <h3><span class="item-num">7</span>ดำรงตนเป็นแบบอย่างที่ดีและรักษาภาพลักษณ์ของข้าราชการครูและบุคลากรทางการศึกษา</h3>
+        <p>ข้าพเจ้าดำรงเป็นแบบอย่างที่ดีในการปฏิบัติหน้าที่ ดำรงตนเป็นข้าราชการและเจ้าหน้าที่ของรัฐที่ดีโดยน้อมนำพระบรมราโชวาท หลักปรัชญาเศรษฐกิจพอเพียง หลักคำสอนทางศาสนา จรรยาวิชาชีพ มาใช้ในการดำเนินชีวิตและการปฏิบัติหน้าที่ ปฏิบัติตนเป็นพลเมืองดีในระบอบประชาธิปไตย ด้วยการเคารพต่อกฎหมาย และมีวินัย ไม่กระทำการใด ๆ อันอาจนำความเสื่อมเสียมาสู่ทางราชการ</p>
+        <div class="photo-row">
+          <figure><img src="media/image14.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+          <figure><img src="media/image15.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="conduct-item">
+        <h3><span class="item-num">8</span>เคารพศักดิ์ศรีความเป็นมนุษย์ คำนึงสิทธิเด็ก และยอมรับความแตกต่างของบุคคล</h3>
+        <p>ข้าพเจ้าปฏิบัติตนดูแลเอาใจใส่ช่วยเหลือผู้เรียนและผู้รับบริการเต็มความสามารถตามหลักวิชาชีพโดยคำนึงถึงสิทธิและโอกาสของผู้เรียนพึงได้รับ ให้ความเท่าเทียมและสร้างโอกาสทางการศึกษาให้กับผู้เรียนและผู้รับบริการ คำนึงถึงความแตกต่างระหว่างบุคคล เช่น การให้คำแนะนำ ให้คำปรึกษาแก่นักเรียน, การส่งเสริมให้นักเรียนได้รับทุนการศึกษา, การประสานความร่วมมือกับผู้ปกครองแจ้งข่าวประชาสัมพันธ์โรงเรียนด้านต่าง ๆ, การให้บริการอำนวยความสะดวกต่อผู้มาติดต่อราชการ เป็นต้น</p>
+        <div class="photo-row">
+          <figure><img src="media/image16.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+          <figure><img src="media/image17.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="conduct-item">
+        <h3><span class="item-num">9</span>ยึดถือและปฏิบัติตามจรรยาบรรณวิชาชีพ</h3>
+        <p>ข้าพเจ้ายึดถือประพฤติปฏิบัติตนตามจรรยาบรรณของวิชาชีพ ด้วยความศรัทธาในวิชาชีพ เป็นแบบอย่างที่ดีให้กับผู้เรียนและผู้รับบริการ เช่น การแต่งกายด้วยชุดที่สุภาพเรียบร้อย, การดูแลเอาใจใส่และช่วยเหลือนักเรียนอย่างเป็นกัลยาณมิตรเต็มกำลัง ความรู้ ความสามารถอย่างเท่าเทียมกัน, พัฒนาตนเอง ส่งเสริมและให้บริการความรู้ต่อเพื่อนร่วมวิชาชีพ เป็นต้น</p>
+        <div class="photo-row">
+          <figure><img src="media/image18.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+          <figure><img src="media/image19.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="conduct-item">
+        <h3><span class="item-num">10</span>มีวินัยและการรักษาวินัย</h3>
+        <p>ข้าพเจ้าปฏิบัติตนมีวินัยในตนเอง ยอมรับและถือปฏิบัติตามกฎ กติกา มารยาท ขนบธรรมเนียมและแบบแผนอันดีงามของสังคม อย่างเคร่งครัด เช่น มีความตรงต่อเวลาในการเข้าและเลิกปฏิบัติงาน, เข้าร่วมกิจกรรมที่ทางโรงเรียนจัดขึ้นสม่ำเสมอ, แต่งกายถูกต้องตามข้อกำหนดของสถานศึกษา เป็นต้น</p>
+        <div class="photo-row">
+          <figure><img src="media/image20.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+          <figure><img src="media/image21.jpg" alt="ภาพประกอบ"><figcaption>ภาพประกอบ</figcaption></figure>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="signature">
+      <p class="line">ขอรับรองว่ารายงานดังกล่าวข้างต้นเป็นความจริงทุกประการ</p>
+      <p class="line">(ลงชื่อ)</p>
+      <p class="name">(นายนิรุตติ์ วงคำชัย)</p>
+      <p class="line">ตำแหน่ง รองผู้อำนวยการโรงเรียนสระแก้ว</p>
+      <p class="line">วันที่ 11 เดือน กันยายน พ.ศ. 2569</p>
+    </div>
+  </section>
+
+  <!-- APPENDIX -->
+  <section id="appendix">
+    <h2 class="single-head">ภาคผนวก</h2>
+    <div class="card">
+      <p style="margin-bottom:18px;">ภาพหลักฐานประกอบผลการปฏิบัติงานด้านการบริหารวิชาการ ด้านการบริหารจัดการสถานศึกษา ด้านการบริหารการเปลี่ยนแปลงกลยุทธ์และนวัตกรรม ด้านการบริหารงานชุมชนและเครือข่าย ด้านการพัฒนาตนเองและวิชาชีพ เกียรติบัตรพัฒนาตนเอง เกียรติบัตรรางวัล และเกียรติบัตรวิทยากร</p>
+      <div class="gallery">
+        <figure><img src="media/image20.jpg" alt="เอกสารหลักฐาน"><figcaption>เอกสารหลักฐาน</figcaption></figure>
+        <figure><img src="media/image22.jpg" alt="เอกสารหลักฐาน"><figcaption>เอกสารหลักฐาน</figcaption></figure>
+        <figure><img src="media/image18.jpg" alt="เอกสารหลักฐาน"><figcaption>เอกสารหลักฐาน</figcaption></figure>
+        <figure><img src="media/image21.jpg" alt="เอกสารหลักฐาน"><figcaption>เอกสารหลักฐาน</figcaption></figure>
+        <figure><img src="media/image23.jpg" alt="เอกสารหลักฐาน"><figcaption>เอกสารหลักฐาน</figcaption></figure>
+        <figure><img src="media/image24.jpg" alt="เกียรติบัตร"><figcaption>เกียรติบัตร</figcaption></figure>
+        <figure><img src="media/image25.jpg" alt="เกียรติบัตร"><figcaption>เกียรติบัตร</figcaption></figure>
+        <figure><img src="media/image26.jpg" alt="เกียรติบัตร"><figcaption>เกียรติบัตร</figcaption></figure>
+        <figure><img src="media/image27.jpg" alt="เกียรติบัตร"><figcaption>เกียรติบัตร</figcaption></figure>
+        <figure><img src="media/image28.jpg" alt="เกียรติบัตร"><figcaption>เกียรติบัตร</figcaption></figure>
+        <figure><img src="media/image29.jpg" alt="เกียรติบัตร"><figcaption>เกียรติบัตร</figcaption></figure>
+        <figure><img src="media/image30.jpg" alt="เกียรติบัตร"><figcaption>เกียรติบัตร</figcaption></figure>
+        <figure><img src="media/image19.jpg" alt="เกียรติบัตร"><figcaption>เกียรติบัตร</figcaption></figure>
+        <figure><img src="media/image31.jpg" alt="เอกสารหลักฐาน"><figcaption>เอกสารหลักฐาน</figcaption></figure>
+        <figure><img src="media/image32.jpg" alt="เอกสารหลักฐาน"><figcaption>เอกสารหลักฐาน</figcaption></figure>
+        <figure><img src="media/image33.jpg" alt="เอกสารหลักฐาน"><figcaption>เอกสารหลักฐาน</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    รายงานผลการปฏิบัติงานของข้าราชการครูและบุคลากรทางการศึกษา สายงานบริหารสถานศึกษา<br>
+    โรงเรียนสระแก้ว กันยายน 2569
+  </footer>
+
+</div>
+</body>
+</html>
